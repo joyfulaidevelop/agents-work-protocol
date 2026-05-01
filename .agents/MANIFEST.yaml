@@ -1,0 +1,93 @@
+spec_version: "0.1.0"
+
+entrypoints:
+  hook: ".agents/AGENTS.md"
+  soul: ".agents/SOUL.md"
+  router: ".agents/ROUTER.md"
+  spec: ".agents/AGENTS_SPEC.md"
+  memory_root: ".agents/memories/MEMORY.md"
+
+startup_context:
+  max_files:
+    - ".agents/AGENTS.md"
+    - ".agents/SOUL.md"
+    - ".agents/ROUTER.md"
+    - ".agents/MANIFEST.yaml"
+
+resources:
+  prompts:
+    index: ".agents/prompts/INDEX.md"
+    directory: ".agents/prompts/"
+    load_policy: "on_delegate"
+    format: "markdown"
+
+  skills:
+    index: ".agents/skills/INDEX.md"
+    directory: ".agents/skills/"
+    load_policy: "progressive_disclosure"
+    entry_file: "SKILL.md"
+
+  memories:
+    index: ".agents/memories/MEMORY.md"
+    directory: ".agents/memories/"
+    max_root_size: "1KB"
+    load_policy: "on_relevance"
+
+  plans:
+    index: ".agents/plans/INDEX.md"
+    directory: ".agents/plans/"
+    archive_done: ".agents/plans/archive/done/"
+    archive_cancel: ".agents/plans/archive/cancel/"
+    load_policy: "on_task"
+    naming: "YYYY-MM-DD_plan-name_status.md"
+
+  bugs:
+    description: ".agents/bugs/BUGS.md"
+    db: ".agents/bugs/bugs.sqlite"
+    cli: ".agents/bugs/bugs_cli.py"
+    load_policy: "query_only"
+
+  todo:
+    description: ".agents/todo/TODO.md"
+    db: ".agents/todo/todo.sqlite"
+    cli: ".agents/todo/todo_cli.py"
+    load_policy: "query_only"
+
+  chats:
+    description: ".agents/chats/CHATS.md"
+    db: ".agents/chats/chats.sqlite"
+    cli: ".agents/chats/chats_cli.py"
+    load_policy: "query_only"
+
+  roadmaps:
+    main: ".agents/roadmaps/ROADMAP.md"
+    milestones: ".agents/roadmaps/milestones/"
+    branches: ".agents/roadmaps/branches/"
+    load_policy: "on_task"
+
+  logs:
+    directory: ".agents/logs/agent-runs/"
+    load_policy: "append_only"
+
+status_values:
+  plan:
+    - new
+    - working
+    - blocked
+    - review
+    - done
+    - cancel
+  bug:
+    - open
+    - confirmed
+    - assigned
+    - fixing
+    - review
+    - closed
+    - wontfix
+  todo:
+    - pending
+    - in_progress
+    - blocked
+    - done
+    - cancel
